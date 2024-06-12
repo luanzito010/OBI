@@ -21,13 +21,11 @@ int main(){
 
     for (int i = 0;i <= tam2;i++){
         
-        if(i + tam <= tam2){
-            for(int j = i;j < i + tam;j++){
-                if(a[j - i] > b[j]) break;
-                if(a[j - i] < b[j]) {
-                    check[i] = 1;
-                    break;
-                }
+        for(int j = i;i + tam <= tam2 && j < i + tam;j++){
+            if(a[j - i] > b[j]) break;
+            if(a[j - i] < b[j]) {
+                check[i] = 1;
+                break;
             }
         }
         
