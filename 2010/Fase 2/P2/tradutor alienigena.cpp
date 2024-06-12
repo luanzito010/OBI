@@ -29,17 +29,20 @@ int main(){
             }
         }
         
+        int at = i % maxp;
+        int prox = (i + 1) % maxp;
+        
         for(int j = 1;j <= min(tam,i);j++){
             if(b[i - j] == '0') continue;
             if(j == tam && check[i - j]) break;
-            dp[(i + 1) % maxp][j + 1] = dp[i % maxp][j] % mod;
-            dp[i % maxp][0] = (dp[i % maxp][0] + dp[i % maxp][j]) % mod;
+            dp[prox][j + 1] = dp[at][j] % mod;
+            dp[at][0] = (dp[at][0] + dp[at][j]) % mod;
         }
         
-        dp[(i + 1) % maxp][1] = dp[i % maxp][0] % mod;
-        dp[i % maxp][0] = 0;
+        dp[prox][1] = dp[at][0] % mod;
+        dp[at][0] = 0;
     }
 
-    cout << dp[(tam2 + 1) % maxp][1];
+    cout << dp[(tam2 + 1) % maxp][1] << "\n";
     return 0;
 }
