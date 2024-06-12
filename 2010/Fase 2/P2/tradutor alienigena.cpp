@@ -3,10 +3,10 @@
 
 using namespace std;
 
-const int maxn = 1e5 + 5,maxp = 1e2 + 5,mod = 1e9 + 7;
+const int maxn = 1e5 + 5,maxd = 1e2 + 5,mod = 1e9 + 7,maxp = 2;
 
 string a,b;
-int check[maxn],dp[maxp][maxp];
+int check[maxn],dp[maxp][maxd];
 
 int main(){
     ios_base::sync_with_stdio(false);
@@ -31,22 +31,17 @@ int main(){
             }
         }
         
-        bool ult = 0;
-        
         for(int j = 1;j <= min(tam,i);j++){
             if(b[i - j] == '0') continue;
             if(j == tam && check[i - j]) break;
             dp[(i + 1) % maxp][j + 1] = dp[i % maxp][j] % mod;
-            if(!ult){ 
-                dp[i % maxp][0] = dp[i % maxp][j] % mod;
-                ult = 1;
-            }
-            else dp[i % maxp][0] = (dp[i % maxp][0] + dp[i % maxp][j]) % mod;
+            dp[i % maxp][0] = (dp[i % maxp][0] + dp[i % maxp][j]) % mod;
         }
         
         dp[(i + 1) % maxp][1] = dp[i % maxp][0] % mod;
+        dp[i % maxp][0] = 0;
     }
 
-    cout << dp[tam2 % maxp][0];
+    cout << dp[(tam2 + 1) % maxp][1];
     return 0;
 }
