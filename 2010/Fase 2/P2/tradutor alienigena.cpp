@@ -19,7 +19,7 @@ int main(){
 
     dp[0][0] = 1;
 
-    for (int i = 0;i <= tam2;i++){
+    for(int i = 0;i <= tam2;i++){
         
         for(int j = i;i + tam <= tam2 && j < i + tam;j++){
             if(a[j - i] > b[j]) break;
